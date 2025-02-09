@@ -48,42 +48,6 @@ export default function Navbar() {
             <li className="nav-item">
               <Link href="/" className="nav-link">Home</Link>
             </li>
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Courses
-              </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <Link href="/courses" className="dropdown-item">All Courses</Link>
-                </li>
-                <li><hr className="dropdown-divider" /></li>
-                {categories.map((category) => (
-                  <li key={category}>
-                    <Link 
-                      href={`/courses?category=${category}`}
-                      className="dropdown-item"
-                    >
-                      {category}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </li>
-            <li className="nav-item">
-              <Link href="/services" className="nav-link">Services</Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/events" className="nav-link">Events</Link>
-            </li>
-            <li className="nav-item">
-              <Link href="/contact" className="nav-link">Contact</Link>
-            </li>
           </ul>
         </div>
       </div>
