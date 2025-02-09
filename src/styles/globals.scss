@@ -1,0 +1,153 @@
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// Custom Variables
+$primary: #2B3990;
+$secondary: #FF6B00;
+
+// Global Styles
+:root {
+  --primary: #{$primary};
+  --secondary: #{$secondary};
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+// Custom Button Styles
+.btn-primary {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  &:hover {
+    background-color: darken($primary, 10%);
+    border-color: darken($primary, 10%);
+    transform: translateY(-2px);
+  }
+}
+
+.btn-secondary {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  &:hover {
+    background-color: darken($secondary, 10%);
+    border-color: darken($secondary, 10%);
+    transform: translateY(-2px);
+  }
+}
+
+.section-padding {
+  padding: 100px 0;
+}
+
+.bg-light {
+  background-color: #f8f9fa !important;
+}
+
+.hero-section {
+  padding: 160px 0 120px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: relative;
+  overflow: hidden;
+  
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+  
+  .lead {
+    font-size: 1.25rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+  
+  .btn {
+    padding: 0.8rem 2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .img-fluid {
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.opacity-75 {
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+// Custom Header Styles
+.navbar {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 1rem 0;
+  
+  .navbar-brand {
+    img {
+      height: 40px;
+      width: auto;
+    }
+  }
+  
+  .nav-link {
+    color: #333;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: var(--primary);
+    }
+  }
+}
+
+.testimonial-card {
+  .rounded-circle {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 3px solid var(--primary);
+  }
+  
+  .card-text {
+    font-style: italic;
+    color: #666;
+    line-height: 1.8;
+  }
+  
+  .student-info {
+    h5 {
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+    
+    small {
+      color: #666;
+    }
+  }
+}
