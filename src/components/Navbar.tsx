@@ -30,7 +30,7 @@ export default function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
       <div className="container">
         <Link href="/" className="navbar-brand">
-          <Image src="/logo.png" alt="BHE UNI Logo" width={120} height={40} priority />
+          <Image src="/logo.svg" alt="BHE UNI Logo" width={120} height={40} priority />
         </Link>
         <button
           className="navbar-toggler"

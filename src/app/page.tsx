@@ -11,20 +11,28 @@ export default function Home() {
   return (
     <div className="container-fluid p-0">
       {/* Hero Section */}
-      <section className="hero-section py-5">
+      <section className="hero-section py-5 py-md-0">
         <div className="container">
           <div className="row align-items-center">
-            <div className="col-lg-6">
-              <h1 className="display-4 fw-bold mb-4">Unlock Your Potential with BHE UNI</h1>
+            <div className="col-lg-8">
+              <h1 className="display-4 fw-bold mb-4">Unlock Your Potential <br /> with <span className='secondary-highlight px-1 rounded'>BHE UNI</span></h1>
               <p className="lead mb-4">Your gateway to quality education and global opportunities</p>
               <div className="d-flex gap-3">
                 <Link href="/courses" className="btn btn-primary">Get Started</Link>
                 <Link href="/about" className="btn btn-outline-primary">Learn More</Link>
               </div>
             </div>
-            <div className="col-lg-6">
-              <div className="position-relative">
-                <Image src="/hero-image.png" alt="Students" width={600} height={400} className="img-fluid" />
+            <div className="col-lg-4">
+              <div className="position-relative w-100">
+                <Image
+                  src="/h-r.png"
+                  alt="Students"
+                  width={0}
+                  height={0}
+                  sizes="100vw"
+                  className="img-fluid w-100 h-auto"
+                  style={{ objectFit: 'contain' }}
+                />
               </div>
             </div>
           </div>
