@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface Course {
   id: number;
@@ -21,8 +21,8 @@ export default function Navbar() {
     try {
       const response = await fetch('https://crm.bheuni.io/api/v1/courses?query=&page=50');
       if (!response.ok) throw new Error('Failed to fetch categories');
-      const data = await response.json();
-      const uniqueCategories = [...new Set(data.data.map((course: Course) => course.category))];
+      const data: { data: Course[] } = await response.json();
+      const uniqueCategories = Array.from(new Set(data.data.map(course => course.category)));
       setCategories(uniqueCategories);
     } catch (error) {
       console.error('Error fetching categories:', error);
