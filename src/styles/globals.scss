@@ -12,12 +12,11 @@ $secondary: #FF6B00;
 }
 
 // Font Styles
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif;
+* {
+  font-family: inherit;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
   color: #333;
 }
 .primary-color{

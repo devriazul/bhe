@@ -1,12 +1,11 @@
 import type { Metadata } from 'next';
-import { Montserrat, Poppins } from 'next/font/google';
+import { Montserrat } from 'next/font/google';
 import '@/styles/globals.scss';
 import Navbar from '@/components/Navbar';
 import Topbar from '@/components/Topbar';
 import Footer from '@/components/Footer';
 
 const montserrat = Montserrat({ weight: ['400', '500', '600', '700'], subsets: ['latin'] });
-const poppins = Poppins({ weight: ['400', '500', '600', '700'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'BHE UNI - Unlock Your Potential',
@@ -20,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${montserrat.className} ${poppins.className}`}>
+      <body className={montserrat.className}>
         <Topbar />
         <Navbar />
         <main className="min-vh-100">
