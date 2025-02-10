@@ -6,13 +6,15 @@ import Link from 'next/link';
 import { FaSearch, FaFilter } from 'react-icons/fa';
 
 interface Course {
-  id: number;
-  title: string;
-  description: string;
-  category: string;
-  level: string;
-  price: number;
-  image_url: string;
+  course_id: string;
+  course_name: string;
+  course_description: string;
+  university_name: string;
+  duration: string;
+  tuition_fee: string;
+  study_mode: string;
+  qualification: string;
+  start_date: string;
 }
 
 interface ApiResponse {
@@ -27,8 +29,8 @@ export default function Courses() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedLevel, setSelectedLevel] = useState('');
+  const [selectedMode, setSelectedMode] = useState('');
+  const [selectedQualification, setSelectedQualification] = useState('');
 
   useEffect(() => {
     fetchCourses();
@@ -36,21 +38,21 @@ export default function Courses() {
 
   const fetchCourses = async () => {
     try {
-      const response = await fetch(`https://crm.bheuni.io/api/v1/courses?query=${searchQuery}&page=50`, {
+      const url = 'https://advance-course-finder.p.rapidapi.com/course';
+      const response = await fetch(url, {
+        method: 'GET',
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'x-rapidapi-key': 'b7fb9c2fa4mshd781db4274ed79ap1988fejsn7f7e2b85bbe9',
+          'x-rapidapi-host': 'advance-course-finder.p.rapidapi.com'
         }
       });
+
       if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.message || `HTTP error! status: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-      const data: ApiResponse = await response.json();
-      if (!data || !Array.isArray(data.data)) {
-        throw new Error('Invalid data format received from API');
-      }
-      setCourses(data.data);
+
+      const data = await response.json();
+      setCourses(data);
       setLoading(false);
       setError('');
     } catch (err) {
@@ -62,9 +64,9 @@ export default function Courses() {
   };
 
   const filteredCourses = courses.filter(course => {
-    const matchesCategory = !selectedCategory || course.category === selectedCategory;
-    const matchesLevel = !selectedLevel || course.level === selectedLevel;
-    return matchesCategory && matchesLevel;
+    const matchesMode = !selectedMode || course.study_mode.toLowerCase() === selectedMode.toLowerCase();
+    const matchesQualification = !selectedQualification || course.qualification.toLowerCase() === selectedQualification.toLowerCase();
+    return matchesMode && matchesQualification;
   });
 
   return (
@@ -75,7 +77,7 @@ export default function Courses() {
           <div className="row align-items-center">
             <div className="col-lg-6">
               <h1 className="display-4 fw-bold mb-4">Explore Our Courses</h1>
-              <p className="lead mb-4">Discover a wide range of courses designed to help you achieve your goals</p>
+              <p className="lead mb-4">Discover a wide range of courses from top universities worldwide</p>
             </div>
             <div className="col-lg-6">
               <Image src="/course-hero.jpg" alt="Courses" width={600} height={400} className="img-fluid rounded-3 shadow" />
@@ -104,25 +106,25 @@ export default function Courses() {
               <div className="col-md-3">
                 <select
                   className="form-select"
-                  value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  value={selectedMode}
+                  onChange={(e) => setSelectedMode(e.target.value)}
                 >
-                  <option value="">All Categories</option>
-                  <option value="business">Business</option>
-                  <option value="technology">Technology</option>
-                  <option value="arts">Arts</option>
+                  <option value="">All Study Modes</option>
+                  <option value="full-time">Full Time</option>
+                  <option value="part-time">Part Time</option>
+                  <option value="online">Online</option>
                 </select>
               </div>
               <div className="col-md-3">
                 <select
                   className="form-select"
-                  value={selectedLevel}
-                  onChange={(e) => setSelectedLevel(e.target.value)}
+                  value={selectedQualification}
+                  onChange={(e) => setSelectedQualification(e.target.value)}
                 >
-                  <option value="">All Levels</option>
-                  <option value="beginner">Beginner</option>
-                  <option value="intermediate">Intermediate</option>
-                  <option value="advanced">Advanced</option>
+                  <option value="">All Qualifications</option>
+                  <option value="bachelor">Bachelor's Degree</option>
+                  <option value="master">Master's Degree</option>
+                  <option value="phd">PhD</option>
                 </select>
               </div>
             </div>
@@ -146,25 +148,23 @@ export default function Courses() {
           ) : (
             <div className="row g-4">
               {filteredCourses.map((course) => (
-                <div key={course.id} className="col-lg-4 col-md-6">
+                <div key={course.course_id} className="col-lg-4 col-md-6">
                   <div className="card h-100 shadow-sm hover-lift">
-                    <Image
-                      src={course.image_url || '/course-placeholder.jpg'}
-                      alt={course.title}
-                      width={400}
-                      height={250}
-                      className="card-img-top"
-                    />
                     <div className="card-body">
                       <div className="d-flex justify-content-between align-items-center mb-2">
-                        <span className="badge bg-primary">{course.category}</span>
-                        <span className="badge bg-secondary">{course.level}</span>
+                        <span className="badge bg-primary">{course.study_mode}</span>
+                        <span className="badge bg-secondary">{course.qualification}</span>
                       </div>
-                      <h5 className="card-title">{course.title}</h5>
-                      <p className="card-text text-muted">{course.description}</p>
+                      <h5 className="card-title">{course.course_name}</h5>
+                      <p className="card-text text-muted">{course.course_description}</p>
+                      <div className="mt-3">
+                        <p className="mb-1"><strong>University:</strong> {course.university_name}</p>
+                        <p className="mb-1"><strong>Duration:</strong> {course.duration}</p>
+                        <p className="mb-1"><strong>Start Date:</strong> {course.start_date}</p>
+                        <p className="mb-3"><strong>Tuition Fee:</strong> {course.tuition_fee}</p>
+                      </div>
                       <div className="d-flex justify-content-between align-items-center mt-3">
-                        <span className="h5 text-primary mb-0">${course.price}</span>
-                        <Link href={`/courses/${course.id}`} className="btn btn-outline-primary">
+                        <Link href={`/courses/${course.course_id}`} className="btn btn-outline-primary">
                           Learn More
                         </Link>
                       </div>
