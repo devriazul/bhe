@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Montserrat, Poppins } from 'next/font/google';
 import '@/styles/globals.scss';
 import Navbar from '@/components/Navbar';
+import Topbar from '@/components/Topbar';
 import Footer from '@/components/Footer';
 
 const montserrat = Montserrat({ weight: ['400', '500', '600', '700'], subsets: ['latin'] });
@@ -20,8 +21,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${montserrat.className} ${poppins.className}`}>
+        <Topbar />
         <Navbar />
-        <main className="min-vh-100 pt-5 mt-4">
+        <main className="min-vh-100">
           {children}
         </main>
         <Footer />

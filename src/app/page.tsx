@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="container-fluid p-0">
       {/* Hero Section */}
-      <section className="hero-section py-5 py-md-0">
+      <section className="hero-section py-md-0 mt-0">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-8">

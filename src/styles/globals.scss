@@ -167,6 +167,17 @@ body {
       color: var(--primary);
     }
   }
+  .topbar {
+    font-size: 0.875rem;
+    
+    a, span {
+      font-size: 0.875rem;
+    }
+    
+    .social-icons a {
+      font-size: 0.875rem;
+    }
+  }
 }
 
 .testimonial-card {
@@ -193,4 +204,20 @@ body {
       color: #666;
     }
   }
+}
+// Navbar and Topbar Transitions
+.transition-all {
+  transition: all 0.3s ease-in-out;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.-translate-y-full {
+  transform: translateY(-100%);
+}
+
+.mt-10 {
+  margin-top: 40px;
 }
